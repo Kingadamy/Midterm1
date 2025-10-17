@@ -1,34 +1,38 @@
 #include <iostream>
 using namespace std;
 
-const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
+const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20; // declaration for min and max values
 
-class DoublyLinkedList {
+class DoublyLinkedList { // create doubly linked list class
 private:
-    struct Node {
-        int data;
-        Node* prev;
-        Node* next;
+    struct Node {  // create node struct for doubly linked list
+
+        int data; // int for data
+        Node* prev; // points to previous node
+        Node* next; // points to next node
+
+        // creates new node with a value and option to go to previous and next nodes
         Node(int val, Node* p = nullptr, Node* n = nullptr) {
-            data = val; 
-            prev = p;
-            next = n;
+            data = val; // store value in data
+            prev = p;   // points to previous node
+            next = n;   // points to next node
+            // these deault to nullptr if not given
         }
     };
 
-    Node* head;
-    Node* tail;
-
+    Node* head;    // points to head of list
+    Node* tail;    // points to tail of list
 public:
-    DoublyLinkedList() { head = nullptr; tail = nullptr; }
+    DoublyLinkedList() { head = nullptr; tail = nullptr; }  // constructor to create an empty doubly linked list
 
-    void insert_after(int value, int position) {
-        if (position < 0) {
+
+    void insert_after(int value, int position) {  // inserts a new node with given value after the given position
+        if (position < 0) { // check if the position is valid
             cout << "Position must be >= 0." << endl;
-            return;
+            return; // exits the function if position is invalid
         }
 
-        Node* newNode = new Node(value);
+        Node* newNode = new Node(value);  
         if (!head) {
             head = tail = newNode;
             return;
