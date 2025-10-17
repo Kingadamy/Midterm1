@@ -229,7 +229,52 @@ public:
 
 int main() { // main function for testing
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
+    cout << endl;
 
+    DoublyLinkedList list; // create doubly linked list object
+    cout << "Add elemets to list to test every other element function:" ;
+    list.push_back(1);
+    list.push_back(2);
+    list.push_back(3);
+    list.push_back(4);
+    list.push_back(5);
+    list.push_back(6);
+    list.push_back(7);
+    list.push_back(8);
+    list.every_other_element();
+
+    cout << endl;
+
+    cout << "Full list: " << endl;
+    list.print();
+
+    cout << "\nEvery other element in the list: " << endl;
+    list.every_other_element();
+
+    cout << "\nRemove fist element and test again: " << endl;
+    list.pop_front(); // removes 1 from list
+
+    cout << "Full list: " ;
+    list.print();
+
+    cout << "\nEvery other element in the list (starting from first): " ;
+    list.every_other_element();
+
+  cout << "\nTesting with a smaller list..." << endl;
+    DoublyLinkedList list2; // create another list
+    list2.push_back(5); 
+    list2.push_back(15); 
+    list2.push_back(25); 
+
+    cout << "Full list: ";
+    list2.print(); // should print 5 15 25
+
+    cout << "Every other element: ";
+    list2.every_other_element(); // should print 5 25
+
+    cout << "\nTesting with empty list..." << endl;
+    DoublyLinkedList list3; // create empty list
+    list3.every_other_element(); // should print "List is empty."
     
     return 0;
 }
