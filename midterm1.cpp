@@ -191,26 +191,43 @@ public:
         }
         while (current) { // traverse the list 
             cout << current->data << " "; // prints current node
-            current = current->next; 
+            current = current->next;  // move to next node
         }
-        cout << endl;
+        cout << endl; 
     }
 
-    void print_reverse() {
-        Node* current = tail;
-        if (!current) { 
+    void print_reverse() { // prints the list from tail to head (reverse order)
+        Node* current = tail; // start from tail of list
+        if (!current) {  // check if list is empty
             cout << "List is empty." << endl;
             return;
         }
-        while (current) {
-            cout << current->data << " ";
-            current = current->prev;
+        while (current) { // traverse the lsit backwards using prev pointers
+            cout << current->data << " "; // prints current node
+            current = current->prev;  // move to previous node
         }
         cout << endl;
     }
+
+    void every_other_element(){ // prints every other element in the list starting at head
+        Node* current = head; // start from head of list
+        if(!current){ // check if list is empty
+            cout << "List is empty." << endl;
+            return;
+        }
+
+        while (current){ // traverse the list
+            cout << current->data << " "; // print current node
+            if(current->next) // check if there is a next node
+                current = current->next->next; // move to the node after next
+            else
+                break; // exit loop if there is no next node
+        }
+    }
+
 };
 
-int main() {
+int main() { // main function for testing
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
 
     
