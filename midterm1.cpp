@@ -32,30 +32,32 @@ public:
             return; // exits the function if position is invalid
         }
 
-        Node* newNode = new Node(value);  
+        Node* newNode = new Node(value); // creates memory for new node with the given value
         if (!head) {
-            head = tail = newNode;
-            return;
+            head = tail = newNode; // both head and tail point to the same node
+            return; // exit function if list was empty
         }
 
-        Node* temp = head;
-        for (int i = 0; i < position && temp; ++i)
-            temp = temp->next;
+        Node* temp = head; // temp pointer to traverse the list
+        for (int i = 0; i < position && temp; ++i) // traverse to the given position
+            temp = temp->next; // move to next node
 
-        if (!temp) {
+        if (!temp) { // if temp = nullptr, we are past the end of the list
             cout << "Position exceeds list size. Node not inserted.\n";
-            delete newNode;
-            return;
+            delete newNode; // frees memory allocated for new node
+            return; 
         }
 
-        newNode->next = temp->next;
-        newNode->prev = temp;
-        if (temp->next)
-            temp->next->prev = newNode;
+        newNode->next = temp->next; // new node points to the node after temp
+        newNode->prev = temp;       // new node points back to temp (node before it)
+        if (temp->next)         // if temp is not the tail
+            temp->next->prev = newNode;   // node after temp points back to new node
         else
-            tail = newNode;
-        temp->next = newNode;
+            tail = newNode;       // if temp was the tail then we update tail to new node
+        temp->next = newNode;      // temp now points to new node
     }
+
+    
 
     void delete_val(int value) {
         if (!head) return;
