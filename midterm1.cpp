@@ -96,38 +96,38 @@ public:
     
         Node* temp = head; // start from head to traverse the list
     
-        for (int i = 1; i < pos; i++){
-            if (!temp) {
+        for (int i = 1; i < pos; i++){ // traverse to the given position we use i < pos because we start at 1
+            if (!temp) {    // check if we reached the end of the list
                 cout << "Position doesn't exist." << endl;
-                return;
+                return; // exit the function if position is invalid
             }
             else
-                temp = temp->next;
+                temp = temp->next;  // moves to next node
         }
-        if (!temp) {
+        if (!temp) { // after the loop check if position is valid
             cout << "Position doesn't exist." << endl;
-            return;
+            return;  // ewxit the function if position is invalid
         }
     
-        if (!temp->next) {
-            pop_back();
-            return;
+        if (!temp->next) { // this is a special case if we need to delete the tail
+            pop_back(); // use function for deleting the tail
+            return;  
         }
     
-        Node* tempPrev = temp->prev;
-        tempPrev->next = temp->next;
-        temp->next->prev = tempPrev;
+        Node* tempPrev = temp->prev; // store pointer to previous node
+        tempPrev->next = temp->next; // the next node skips over temp and points to the node after temp
+        temp->next->prev = tempPrev; // the previous node skips over temp and points back to the node before temp
         delete temp;
     }
 
-    void push_back(int v) {
-        Node* newNode = new Node(v);
-        if (!tail)
-            head = tail = newNode;
+    void push_back(int v) { // adds new node with value "v" to the end of the list
+        Node* newNode = new Node(v); // create new node with value v
+        if (!tail)      // if list is empty
+            head = tail = newNode; // becomes both head and tail
         else {
-            tail->next = newNode;
-            newNode->prev = tail;
-            tail = newNode;
+            tail->next = newNode; // if the list is not empty then tail's next points to new node
+            newNode->prev = tail; // new nodes prev points to current tail
+            tail = newNode; // update tail to new node 
         }
     }
     
