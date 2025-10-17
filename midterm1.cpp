@@ -57,43 +57,44 @@ public:
         temp->next = newNode;      // temp now points to new node
     }
 
-    
 
-    void delete_val(int value) {
-        if (!head) return;
 
-        Node* temp = head;
+    void delete_val(int value) { // deletes the first node with the given value
+        if (!head) return; // if list is empty, quit the function
+
+        Node* temp = head;  // start search from head of list
         
-        while (temp && temp->data != value)
-            temp = temp->next;
+        while (temp && temp->data != value)   // traverse the list to find the value
+            temp = temp->next; // move to next node
 
-        if (!temp) return; 
+        if (!temp) return; // if there is no value to delete, quit the function
 
-        if (temp->prev)
-            temp->prev->next = temp->next;
+        if (temp->prev)  //if the node to delete is not the head
+            temp->prev->next = temp->next;  // previous node will skip over temp
         else
-            head = temp->next; 
+            head = temp->next; // if the temp is head then update head to next node
 
-        if (temp->next)
-            temp->next->prev = temp->prev;
+        if (temp->next) // if the node to delete is not the tail
+            temp->next->prev = temp->prev; // next node will skip over temp
         else
-            tail = temp->prev; 
+            tail = temp->prev; // if the temp is tail then update tail to previous node
 
-        delete temp;
+        delete temp; // free memory used for temp
     }
 
-    void delete_pos(int pos) {
-        if (!head) {
-            cout << "List is empty." << endl;
-            return;
+
+    void delete_pos(int pos) { // function to delete node at given position
+        if (!head) { // check if list is empty
+            cout << "List is empty." << endl;  
+            return;  // if the list is empty exit the function
         }
     
-        if (pos == 1) {
-            pop_front();
-            return;
+        if (pos == 1) { // if position is 1 we need to delete the head
+            pop_front(); // call for pop front to delete head
+            return; 
         }
     
-        Node* temp = head;
+        Node* temp = head; // start from head to traverse the list
     
         for (int i = 1; i < pos; i++){
             if (!temp) {
